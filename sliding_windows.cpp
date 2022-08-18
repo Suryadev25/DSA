@@ -104,7 +104,7 @@
 //     return 0;
 // }
 
-// *******Count No. of Anagrams**********************
+// *******************Count No. of Anagrams**********************
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
@@ -124,10 +124,10 @@
 //     {
 //         mp[ptr[i]]++;
 //     }
-// for (auto it : mp)
-// {
-//     cout << it.first << " " << it.second << endl;
-// }
+//     // for (auto it : mp)
+//     // {
+//     //     cout << it.first << " " << it.second << endl;
+//     // }
 //     int k = ptr.size();
 //     int count = mp.size();
 //     int ans = 0;
@@ -169,55 +169,110 @@
 //     return 0;
 // }
 
-#include <bits/stdc++.h>
-#define ll long long
-#define int int64_t
-using namespace std;
+//*****************Max of all Subarray of size k*****************
 
-int32_t main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define int int64_t
+// using namespace std;
 
-    int n;
-    cin >> n;
-    int a[n];
-    for (int i = 0; i < n; i++)
-    {
-        cin >> a[i];
-    }
-    int k;
-    cin >> k;
-    list<int> li;
-    vector<int> ans;
-    int i = 0, j = 0;
-    while (j < n)
-    {
-        while (li.size() > 0 && li.back() < a[j])
-        {
-            li.pop_back();
-        }
-        li.push_back(a[j]);
-        if (j - i + 1 < k)
-        {
-            j++;
-        }
-        else if (j - i + 1 == k)
-        {
-            ans.push_back(li.front());
-            if (a[i] == li.front())
-            {
-                li.pop_front();
-            }
-            i++;
-            j++;
-        }
-    }
-    for (int i = 0; i < ans.size(); i++)
-    {
-        cout << ans[i] << " ";
-    }
-    cout << endl;
+// int32_t main()
+// {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(0);
 
-    return 0;
-}
+//     int n;
+//     cin >> n;
+//     int a[n];
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> a[i];
+//     }
+//     int k;
+//     cin >> k;
+//     list<int> li;
+//     vector<int> ans;
+//     int i = 0, j = 0;
+//     while (j < n)
+//     {
+//         while (li.size() > 0 && li.back() < a[j])
+//         {
+//             li.pop_back();
+//         }
+//         li.push_back(a[j]);
+//         if (j - i + 1 < k)
+//         {
+//             j++;
+//         }
+//         else if (j - i + 1 == k)
+//         {
+//             ans.push_back(li.front());
+//             if (a[i] == li.front())
+//             {
+//                 li.pop_front();
+//             }
+//             i++;
+//             j++;
+//         }
+//     }
+//     for (int i = 0; i < ans.size(); i++)
+//     {
+//         cout << ans[i] << " ";
+//     }
+//     cout << endl;
+
+//     return 0;
+// }
+
+//*****************************************Variable Size Window**********************************************
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define int int64_t
+// using namespace std;
+
+// int32_t main()
+// {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(0);
+
+//     int n;
+//     cin >> n;
+//     int a[n];
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> a[i];
+//     }
+//     int k;
+//     cin >> k;
+//     int sum = 0;
+//     int i = 0, j = 0, maxi = 0;
+//     while (j < n)
+//     {
+//         sum += a[j];
+//         if (sum < k)
+//         {
+//             j++;
+//         }
+//         else if (sum == k)
+//         {
+//             maxi = max(maxi, j - i + 1);
+//             j++;
+//         }
+//         else if (sum > k)
+//         {
+//             while (sum > k)
+//             {
+//                 sum -= a[i];
+//                 i++;
+//                 if (sum == k)
+//                 {
+//                     maxi = max(maxi, j - i + 1);
+//                     break;
+//                 }
+//             }
+//             j++;
+//         }
+//     }
+//     cout << maxi << endl;
+//     return 0;
+// }
