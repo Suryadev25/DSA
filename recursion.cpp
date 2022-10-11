@@ -3,18 +3,21 @@
 
 // int digits(int n)
 // {
-//     if (n == 0)
+//     static int ans = 0;
+//     if (n > 0)
 //     {
-//         return 0;
+//         ans++;
+//         return digits(n / 10);
 //     }
-//     int subans = digits(n / 10);
-//     int ans = subans + 1;
-//     return ans;
+//     else
+//     {
+//         return ans;
+//     }
 // }
 
 // int main()
 // {
-//     int ans = digits(832541);
+//     int ans = digits(8325414);
 //     cout << ans << endl;
 
 //     return 0;
@@ -27,11 +30,11 @@
 // {
 //     if (n == 1)
 //     {
-//         cout << "Move 1st disk to " << destination << " from " << source << endl;
+//         cout << "Move disk 1 to " << destination << " from " << source << endl;
 //         return;
 //     }
 //     TowerOfHanoi(n - 1, source, destination, helper);
-//     cout << "move " << n << "th disk to " << destination << " from " << source << endl;
+//     cout << "move disk" << n << " to " << destination << " from " << source << endl;
 //     TowerOfHanoi(n - 1, helper, source, destination);
 // }
 // int main()
@@ -43,74 +46,8 @@
 
 //     return 0;
 // }
-
-//********************** Keypad *************************************
-// #include <bits/stdc++.h>
-// using namespace std;
-
-// string keypad_char(char c)
-// {
-
-//     if (c == '2')
-//         return "abc";
-//     if (c == '3')
-//         return "def";
-//     if (c == '4')
-//         return "ghi";
-//     if (c == '5')
-//         return "jkl";
-//     if (c == '6')
-//         return "mno";
-//     if (c == '7')
-//         return "pqrs";
-//     if (c == '8')
-//         return "tuv";
-//     if (c == '9')
-//         return "wxyz";
-
-//     return "";
-// }
-
-// int getkeypad(string input, string output[])
-// {
-//     if (input.length() == 0)
-//     {
-//         output[0] = "";
-//         return 1;
-//     }
-//     int smallerOutput = getkeypad(input.substr(1), output);
-//     string firstDigit = keypad_char(input[0]);
-
-//     string temp[1000];
-//     int k = 0;
-
-//     for (int i = 0; i < smallerOutput; i++)
-//     {
-//         for (int j = 0; j < firstDigit.length(); j++)
-//         {
-//             temp[k] = firstDigit[j] + output[i];
-//             k++;
-//         }
-//     }
-//     for (int i = 0; i < k; i++)
-//     {
-//         output[i] = temp[i];
-//     }
-//     return smallerOutput * firstDigit.length();
-// }
-// int main()
-// {
-//     string output[1000];
-//     int outputsize = getkeypad("5ff23", output);
-
-//     for (int i = 0; i < outputsize; i++)
-//     {
-//         cout << output[i] << endl;
-//     }
-//     return 0;
-// }
-
 // **********************Practice************************
+//****************Fibbonacci or staricase problem***********
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
@@ -118,13 +55,9 @@
 
 // int sum(int n)
 // {
-//     if (n == 1)
+//     if (n == 1 || n == 2)
 //     {
 //         return 1;
-//     }
-//     if (n == 2)
-//     {
-//         return 2;
 //     }
 //     else
 //     {
@@ -145,7 +78,7 @@
 //     return 0;
 // }
 
-// Palindrome String
+// ****************Palindrome String*********************
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
@@ -157,16 +90,15 @@
 //     {
 //         return 1;
 //     }
-//     if (s[start] != s[end])
+//     else if (s[start] != s[end])
 //     {
-//         return 0;
+//         return -1;
 //     }
 //     return helper(s, start + 1, end - 1);
 // }
-// int ispalindrome(string s)
+// int is_palindrome(string s)
 // {
-//     // int n = s.size() - 1;
-//     return helper(s, 0, s.size() - 1);
+//     return helper(s, 0, s.length() - 1);
 // }
 // int32_t main()
 // {
@@ -174,29 +106,26 @@
 //     cin.tie(0);
 //     string s;
 //     cin >> s;
-//     cout << ((ispalindrome(s) == 1) ? "YES" : "NO");
-
+//     cout << ((is_palindrome(s) == 1) ? "YES" : "NO");
 //     return 0;
 // }
+// ***************Reverse Array****************
 
-// Reverse Array
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
 // using namespace std;
 
-// void reversing(vector<int> &v, int start, int end)
+// void helper(vector<int> &v, int start, int end)
 // {
 //     if (start >= end)
 //     {
 //         return;
 //     }
-
 //     int temp = v[start];
 //     v[start] = v[end];
 //     v[end] = temp;
-
-//     reversing(v, start + 1, end - 1);
+//     helper(v, start + 1, end - 1);
 // }
 // void print(vector<int> &v)
 // {
@@ -205,21 +134,25 @@
 //         cout << v[i] << " ";
 //     }
 // }
-
 // int32_t main()
 // {
-
 //     ios_base::sync_with_stdio(false);
 //     cin.tie(0);
-//     vector<int> vec;
-//     vec = {1, 2, 3, 4, 5};
-//     reversing(vec, 0, vec.size() - 1);
-//     print(vec);
 
+//     vector<int> v;
+//     int n;
+//     cin >> n;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         v.push_back(x);
+//     }
+//     helper(v, 0, v.size() - 1);
+//     print(v);
 //     return 0;
 // }
-
-// Subsequences
+// ******************Subsequences***********************
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
@@ -239,9 +172,9 @@
 // }
 // vector<string> Answer(string s)
 // {
-//     vector<string> an;
+//     vector<string> ans;
 //     helper(s, "", 0);
-//     return an;
+//     return ans;
 // }
 
 // int32_t main()
@@ -252,7 +185,8 @@
 //     return 0;
 // }
 
-// Subsets
+// ************************Subsets*******************
+
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
@@ -298,7 +232,7 @@
 //     return 0;
 // }
 
-// Subset Sum Problem
+// **************************Subset Sum Problem****************************
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
@@ -310,7 +244,7 @@
 //         return 1;
 //     if (i >= v.size())
 //         return 0;
-
+//     // Take or NotTake
 //     int rec_call1 = helper(v, sum, temp + v[i], i + 1);
 //     int rec_call2 = helper(v, sum, temp, i + 1);
 //     return rec_call1 || rec_call2;
@@ -324,37 +258,37 @@
 //     ios_base::sync_with_stdio(false);
 //     cin.tie(0);
 //     vector<int> vic = {1, 2, 3, 4, 5, 6};
-//     int sum = 9;
+//     int sum = 99;
 //     cout << is_sum(vic, sum);
 //     return 0;
 // }
 
-// Permutations
+// **********************Permutations*************************
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
 // using namespace std;
-// vector<vector<int>> vec;
-// void helper(vector<int> &nums, int i)
+// vector<vector<int>> ans;
+// void helper(vector<int> &v, int i)
 // {
-//     if (i == nums.size())
+//     if (i == v.size())
 //     {
-//         vec.push_back(nums);
+//         ans.push_back(v);
 //         return;
 //     }
-//     for (int j = i; j < nums.size(); j++)
+//     for (int j = i; j < v.size(); j++)
 //     {
-//         swap(nums[i], nums[j]);
-//         helper(nums, i + 1);
-//         //Backtracking
-//         swap(nums[i], nums[j]);
+//         swap(v[i], v[j]);
+//         helper(v, i + 1);
+//         // Backtracking
+//         swap(v[i], v[j]);
 //     }
 //     return;
 // }
 // vector<vector<int>> permute(vector<int> &nums)
 // {
 //     helper(nums, 0);
-//     return vec;
+//     return ans;
 // }
 // int32_t main()
 // {
@@ -376,7 +310,7 @@
 //     return 0;
 // }
 
-// KEYPAD PROBLEM
+// **********************KEYPAD PROBLEM****************************
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
@@ -384,21 +318,21 @@
 
 // vector<string> keys = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
 // vector<string> ans;
-// void helper(vector<int> &a, string temp, int i)
+// void helper(vector<int> v, string temp, int i)
 // {
-//     if (i == a.size())
+//     if (i == v.size())
 //     {
 //         ans.push_back(temp);
 //         return;
 //     }
-//     for (int j = 0; j < keys[a[i]].size(); j++)
+//     for (int j = 0; j < keys[v[i]].size(); j++)
 //     {
-//         helper(a, temp + keys[a[i]][j], i + 1);
+//         helper(v, temp + keys[v[i]][j], i + 1);
 //     }
 // }
-// vector<string> possible_words(vector<int> &a, int n)
+// vector<string> possible_words(vector<int> &v, int n)
 // {
-//     helper(a, "", 0);
+//     helper(v, "", 0);
 //     return ans;
 // }
 // int32_t main()
@@ -416,9 +350,9 @@
 //     return 0;
 // }
 
-//**************Backtracking******************
+// // ********************************Backtracking *************************************
 
-// Combination Sum
+// // **************************Combination Sum *************************
 // #include <bits/stdc++.h>
 // #define ll long long
 // #define int int64_t
@@ -437,13 +371,13 @@
 //         }
 //         return;
 //     }
-// Inclusion
+//     // Inclusion
 //     sum += candidates[i];
 //     temp.push_back(candidates[i]);
 //     helper(candidates, target, i, sum, temp);
 //     sum -= candidates[i];
 //     temp.pop_back();
-// Exclusion
+//     // Exclusion
 //     helper(candidates, target, i + 1, sum, temp);
 // }
 // vector<vector<int>> combinationSum(vector<int> &candidates, int target)
@@ -475,69 +409,143 @@
 // }
 
 //****************** N-Queens*******************
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define int int64_t
+// using namespace std;
+// vector<vector<int>> ans;
+
+// bool isSafe(vector<vector<int>> &board, int r, int c, int n)
+// {
+//     for (int i = 0; i < r; i++)
+//     {
+//         if (board[i][c] == 1)
+//         {
+//             return false;
+//         }
+//     }
+//     for (int i = r - 1, j = c - 1; i >= 0 && j >= 0; i--, j--)
+//     {
+//         if (board[i][j] == 1)
+//         {
+//             return false;
+//         }
+//     }
+//     for (int i = r - 1, j = c + 1; i >= 0 && j < n; i--, j++)
+//     {
+//         if (board[i][j] == 1)
+//         {
+//             return false;
+//         }
+//     }
+//     return true;
+// }
+// void helper(vector<vector<int>> &board, int n, int r)
+// {
+//     if (r == n)
+//     {
+//         vector<int> temp;
+//         for (int i = 0; i < n; i++)
+//         {
+//             for (int j = 0; j < n; j++)
+//             {
+//                 if (board[i][j] == 1)
+//                 {
+//                     temp.push_back(j + 1);
+//                 }
+//             }
+//         }
+//         ans.push_back(temp);
+//         return;
+//     }
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (isSafe(board, r, i, n))
+//         {
+//             board[r][i] = 1;
+//             helper(board, n, r + 1);
+//             board[r][i] = 0;
+//         }
+//     }
+// }
+// vector<vector<int>> nQueen(int n)
+// {
+//     vector<vector<int>> board(n, vector<int>(n, 0));
+//     helper(board, n, 0);
+//     return ans;
+// }
+// int32_t main()
+// {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(0);
+//     int n;
+//     cin >> n;
+//     vector<vector<int>> ans = nQueen(n);
+//     if (ans.size() == 0)
+//         cout << "-1" << endl;
+//     else
+//     {
+//         for (int i = 0; i < ans.size(); i++)
+//         {
+//             cout << "[";
+//             for (auto x : ans[i])
+//             {
+//                 cout << x << " ";
+//             }
+//             cout << "]";
+//         }
+//         cout << endl;
+//     }
+
+//     return 0;
+// }
+
+//************************Rat in a Maze*************************
+//****************Graph Question (DFS)**************************
 #include <bits/stdc++.h>
 #define ll long long
 #define int int64_t
 using namespace std;
-vector<vector<int>> ans;
 
-bool isSafe(vector<vector<int>> &board, int r, int c, int n)
+vector<string> ans;
+bool issafe(vector<vector<int>> &m, vector<vector<int>> &visited, int n, int srcx, int srcy)
 {
-    for (int i = 0; i < r; i++)
-    {
-        if (board[i][c] == 1)
-        {
-            return false;
-        }
-    }
-    for (int i = r - 1, j = c - 1; i >= 0 && j >= 0; i--, j--)
-    {
-        if (board[i][j] == 1)
-        {
-            return false;
-        }
-    }
-    for (int i = r - 1, j = c + 1; i >= 0 && j < n; i--, j++)
-    {
-        if (board[i][j] == 1)
-        {
-            return false;
-        }
-    }
-    return true;
+    if (srcx >= 0 && srcy >= 0 && srcx <= n - 1 && srcy <= n - 1 && visited[srcx][srcy] != 1 && m[srcx][srcy] == 1)
+        return true;
+    return false;
 }
-void helper(vector<vector<int>> &board, int n, int r)
+void helper(vector<vector<int>> &m, vector<vector<int>> &visited, int n, int srcx, int srcy, string temp)
 {
-    if (r == n)
+    if (srcx == n - 1 && srcy == n - 1)
     {
-        vector<int> temp;
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                if (board[i][j] == 1)
-                {
-                    temp.push_back(j + 1);
-                }
-            }
-        }
         ans.push_back(temp);
         return;
     }
-    for (int i = 0; i < n; i++)
+    visited[srcx][srcy] = 1;
+    if (issafe(m, visited, n, srcx + 1, srcy))
     {
-        if (isSafe(board, r, i, n))
-        {
-            board[r][i] = 1;
-            helper(board, n, r + 1);
-            board[r][i] = 0;
-        }
+        helper(m, visited, n, srcx + 1, srcy, temp + "D");
     }
+    if (issafe(m, visited, n, srcx, srcy - 1))
+    {
+        helper(m, visited, n, srcx, srcy - 1, temp + "L");
+    }
+    if (issafe(m, visited, n, srcx, srcy + 1))
+    {
+        helper(m, visited, n, srcx, srcy + 1, temp + "R");
+    }
+    if (issafe(m, visited, n, srcx - 1, srcy))
+    {
+        helper(m, visited, n, srcx - 1, srcy, temp + "U");
+    }
+    visited[srcx][srcy] = 0;
 }
-vector<vector<int>> nQueen(int n)
+vector<string> chooha(vector<vector<int>> &m, int n)
 {
-    vector<vector<int>> board(n, vector<int>(n, 0));
-    helper(board, n, 0);
+    vector<vector<int>> visited(n, vector<int>(n, 0));
+    if (m[0][0] == 0)
+        return ans;
+    helper(m, visited, n, 0, 0, "");
     return ans;
 }
 int32_t main()
@@ -546,20 +554,24 @@ int32_t main()
     cin.tie(0);
     int n;
     cin >> n;
-    vector<vector<int>> ans = nQueen(n);
-    if (ans.size() == 0)
-        cout << "-1" << endl;
-    else
-    {
-        for (int i = 0; i < ans.size(); i++)
-        {
-            cout << "[";
-            for (int u : ans[i])
-                cout << u << " ";
-            cout << "]";
-        }
-        cout << endl;
-    }
+    vector<vector<int>> m;
 
+    for (int i = 0; i < n; i++)
+    {
+        vector<int> temp;
+        for (int j = 0; j < n; j++)
+        {
+            int x;
+            cin >> x;
+            temp.push_back(x);
+        }
+        m.push_back(temp);
+        temp.clear();
+    }
+    ans = chooha(m, n);
+    for (int i = 0; i < ans.size(); i++)
+    {
+        cout << ans[i] << " ";
+    }
     return 0;
 }
