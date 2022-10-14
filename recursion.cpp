@@ -502,76 +502,162 @@
 
 //************************Rat in a Maze*************************
 //****************Graph Question (DFS)**************************
-#include <bits/stdc++.h>
-#define ll long long
-#define int int64_t
-using namespace std;
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define int int64_t
+// using namespace std;
 
-vector<string> ans;
-bool issafe(vector<vector<int>> &m, vector<vector<int>> &visited, int n, int srcx, int srcy)
-{
-    if (srcx >= 0 && srcy >= 0 && srcx <= n - 1 && srcy <= n - 1 && visited[srcx][srcy] != 1 && m[srcx][srcy] == 1)
-        return true;
-    return false;
-}
-void helper(vector<vector<int>> &m, vector<vector<int>> &visited, int n, int srcx, int srcy, string temp)
-{
-    if (srcx == n - 1 && srcy == n - 1)
-    {
-        ans.push_back(temp);
-        return;
-    }
-    visited[srcx][srcy] = 1;
-    if (issafe(m, visited, n, srcx + 1, srcy))
-    {
-        helper(m, visited, n, srcx + 1, srcy, temp + "D");
-    }
-    if (issafe(m, visited, n, srcx, srcy - 1))
-    {
-        helper(m, visited, n, srcx, srcy - 1, temp + "L");
-    }
-    if (issafe(m, visited, n, srcx, srcy + 1))
-    {
-        helper(m, visited, n, srcx, srcy + 1, temp + "R");
-    }
-    if (issafe(m, visited, n, srcx - 1, srcy))
-    {
-        helper(m, visited, n, srcx - 1, srcy, temp + "U");
-    }
-    visited[srcx][srcy] = 0;
-}
-vector<string> chooha(vector<vector<int>> &m, int n)
-{
-    vector<vector<int>> visited(n, vector<int>(n, 0));
-    if (m[0][0] == 0)
-        return ans;
-    helper(m, visited, n, 0, 0, "");
-    return ans;
-}
-int32_t main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(0);
-    int n;
-    cin >> n;
-    vector<vector<int>> m;
+// vector<string> ans;
+// bool issafe(vector<vector<int>> &m, vector<vector<int>> &visited, int n, int srcx, int srcy)
+// {
+//     if (srcx >= 0 && srcy >= 0 && srcx <= n - 1 && srcy <= n - 1 && visited[srcx][srcy] != 1 && m[srcx][srcy] == 1)
+//         return true;
+//     return false;
+// }
+// void helper(vector<vector<int>> &m, vector<vector<int>> &visited, int n, int srcx, int srcy, string temp)
+// {
+//     if (srcx == n - 1 && srcy == n - 1)
+//     {
+//         ans.push_back(temp);
+//         return;
+//     }
+//     visited[srcx][srcy] = 1;
+//     if (issafe(m, visited, n, srcx + 1, srcy))
+//     {
+//         helper(m, visited, n, srcx + 1, srcy, temp + "D");
+//     }
+//     if (issafe(m, visited, n, srcx, srcy - 1))
+//     {
+//         helper(m, visited, n, srcx, srcy - 1, temp + "L");
+//     }
+//     if (issafe(m, visited, n, srcx, srcy + 1))
+//     {
+//         helper(m, visited, n, srcx, srcy + 1, temp + "R");
+//     }
+//     if (issafe(m, visited, n, srcx - 1, srcy))
+//     {
+//         helper(m, visited, n, srcx - 1, srcy, temp + "U");
+//     }
+//     visited[srcx][srcy] = 0;
+// }
+// vector<string> chooha(vector<vector<int>> &m, int n)
+// {
+//     vector<vector<int>> visited(n, vector<int>(n, 0));
+//     if (m[0][0] == 0)
+//         return ans;
+//     helper(m, visited, n, 0, 0, "");
+//     return ans;
+// }
+// int32_t main()
+// {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(0);
+//     int n;
+//     cin >> n;
+//     vector<vector<int>> m;
 
-    for (int i = 0; i < n; i++)
-    {
-        vector<int> temp;
-        for (int j = 0; j < n; j++)
-        {
-            int x;
-            cin >> x;
-            temp.push_back(x);
-        }
-        m.push_back(temp);
-        temp.clear();
-    }
-    ans = chooha(m, n);
-    for (int i = 0; i < ans.size(); i++)
-    {
-        cout << ans[i] << " ";
-    }
-    return 0;
-}
+//     for (int i = 0; i < n; i++)
+//     {
+//         vector<int> temp;
+//         for (int j = 0; j < n; j++)
+//         {
+//             int x;
+//             cin >> x;
+//             temp.push_back(x);
+//         }
+//         m.push_back(temp);
+//         temp.clear();
+//     }
+//     ans = chooha(m, n);
+//     for (int i = 0; i < ans.size(); i++)
+//     {
+//         cout << ans[i] << " ";
+//     }
+//     return 0;
+// }
+
+//*******************************Sudoku Solver***********************
+// #include <bits/stdc++.h>
+// #define ll long long
+// #define int int64_t
+// using namespace std;
+// #define N 9
+// bool check(int grid[N][N], int row, int col, int num)
+// {
+//     for (int i = 0; i < 9; i++)
+//     {
+//         if (grid[row][i] == num)
+//             return false;
+//     }
+//     for (int i = 0; i < 9; i++)
+//     {
+//         if (grid[i][col] == num)
+//             return false;
+//     }
+//     int x = row - row % 3;
+//     int y = col - col % 3;
+//     for (int i = 0; i < 3; i++)
+//     {
+//         for (int j = 0; j < 3; j++)
+//         {
+//             if (grid[x + i][y + j] == num)
+//                 return false;
+//         }
+//     }
+//     return true;
+// }
+// bool helper(int grid[N][N], int row, int col)
+// {
+//     if (row == 9)
+//         return true;
+//     if (col == 9)
+//         return helper(grid, row + 1, 0);
+//     if (grid[row][col] != 0)
+//         return helper(grid, row, col + 1);
+
+//     for (int i = 1; i <= 9; i++)
+//     {
+//         if (check(grid, row, col, i))
+//         {
+//             grid[row][col] = i;
+//             if (helper(grid, row, col))
+//             {
+//                 return true;
+//             }
+//         }
+//         grid[row][col] = 0;
+//     }
+//     return false;
+// }
+// bool solveSudoku(int grid[N][N])
+// {
+//     return helper(grid, 0, 0);
+// }
+// void print(int grid[N][N])
+// {
+//     solveSudoku(grid);
+//     for (int i = 0; i < 9; i++)
+//     {
+//         for (int j = 0; j < 9; j++)
+//         {
+//             cout << grid[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+// }
+// int32_t main()
+// {
+//     ios_base::sync_with_stdio(false);
+//     cin.tie(0);
+
+//     int grid[N][N];
+//     for (int i = 0; i < 9; i++)
+//     {
+//         for (int j = 0; j < 9; j++)
+//         {
+//             cin >> grid[i][j];
+//         }
+//     }
+//     print(grid);
+//     return 0;
+// }
